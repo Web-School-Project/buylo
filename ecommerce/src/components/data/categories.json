@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Electronics",
+    "image": "https://images.unsplash.com/photo-1498049794561-7780e7231661?q=80&w=2070&auto=format&fit=crop",
+    "count": 120
+  },
+  {
+    "id": 2,
+    "name": "Clothing",
+    "image": "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?q=80&w=2070&auto=format&fit=crop",
+    "count": 86
+  },
+  {
+    "id": 3,
+    "name": "Home & Kitchen",
+    "image": "https://images.unsplash.com/photo-1556911220-bda9f7f7597e?q=80&w=2070&auto=format&fit=crop",
+    "count": 54
+  },
+  {
+    "id": 4,
+    "name": "Beauty",
+    "image": "https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=2070&auto=format&fit=crop",
+    "count": 32
+  },
+  {
+    "id": 5,
+    "name": "Accessories",
+    "image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=1980&auto=format&fit=crop",
+    "count": 28
+  },
+  {
+    "id": 6,
+    "name": "Sports & Fitness",
+    "image": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop",
+    "count": 45
+  }
+]
