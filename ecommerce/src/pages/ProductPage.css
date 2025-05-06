@@ -1,0 +1,147 @@
+.products-page {
+  padding: 20px 0;
+}
+
+.page-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #2d3748;
+}
+
+.products-container {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .products-container {
+    flex-direction: row;
+    gap: 30px;
+  }
+}
+
+.filters-sidebar {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+@media (min-width: 768px) {
+  .filters-sidebar {
+    width: 250px;
+    flex-shrink: 0;
+    margin-bottom: 0;
+  }
+}
+
+.products-content {
+  flex: 1;
+}
+
+.filter-section {
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.filter-section:last-child {
+  border-bottom: none;
+}
+
+.filter-section h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #2d3748;
+}
+
+.search-form {
+  display: flex;
+}
+
+.search-form input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px 0 0 4px;
+  font-size: 0.9rem;
+}
+
+.search-form button {
+  padding: 10px 15px;
+  background-color: #3182ce;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-form button:hover {
+  background-color: #2c5282;
+}
+
+.categories-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.category-checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.category-checkbox input {
+  margin-right: 10px;
+}
+
+.category-checkbox label {
+  font-size: 0.95rem;
+  color: #4a5568;
+  cursor: pointer;
+}
+
+.price-filter {
+  padding: 0 5px;
+}
+
+.price-slider {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.price-range-values {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #718096;
+}
+
+.rating-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rating-checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.rating-checkbox input {
+  margin-right: 10px;
+}
+
+.rating-checkbox label {
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+  color: #4a5568;
+  cursor: pointer;
+}
+
+.stars {
+  color: #f6ad55;
+  margin-right: 5px;
+}
