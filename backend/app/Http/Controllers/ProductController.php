@@ -61,6 +61,27 @@ class ProductController extends Controller
         // Paginate results
         $products = $query->paginate(12);
 
+        // Format the response to include images in the expected format
+        $products->getCollection()->transform(function ($product) {
+            // Initialize empty array for images
+            $formattedImages = [];
+            
+            // Only process images if the relationship is loaded and not null
+            if ($product->relationLoaded('images') && $product->images) {
+                $formattedImages = $product->images->map(function ($image) {
+                    return [
+                        'url' => $image->url,
+                        'cloudinary_id' => $image->cloudinary_id,
+                        'is_primary' => $image->is_primary
+                    ];
+                })->toArray();
+            }
+            
+            // Set the formatted images
+            $product->images = $formattedImages;
+            return $product;
+        });
+
         return response()->json($products);
     }
 
@@ -92,11 +113,20 @@ class ProductController extends Controller
 
         // Upload images to Cloudinary
         $cloudinary = $this->initializeCloudinary();
+        $primaryImageUrl = null;
+        $primaryCloudinaryId = null;
+
         foreach ($request->file('images') as $index => $image) {
             $upload = $cloudinary->uploadApi()->upload($image->getRealPath(), [
                 'folder' => 'products',
                 'resource_type' => 'image'
             ]);
+
+            // Store the first image as primary
+            if ($index === 0) {
+                $primaryImageUrl = $upload['secure_url'];
+                $primaryCloudinaryId = $upload['public_id'];
+            }
 
             ProductImage::create([
                 'product_id' => $product->id,
@@ -104,6 +134,14 @@ class ProductController extends Controller
                 'url' => $upload['secure_url'],
                 'is_primary' => $index === 0, // First image is primary
                 'order' => $index
+            ]);
+        }
+
+        // Update product with primary image
+        if ($primaryImageUrl) {
+            $product->update([
+                'image' => $primaryImageUrl,
+                'cloudinary_id' => $primaryCloudinaryId
             ]);
         }
 
@@ -116,6 +154,20 @@ class ProductController extends Controller
     public function show(string $id)
     {
         $product = Product::with(['category', 'images'])->findOrFail($id);
+        
+        // Format the images in the expected format
+        $formattedImages = [];
+        if ($product->images) {
+            $formattedImages = $product->images->map(function ($image) {
+                return [
+                    'url' => $image->url,
+                    'cloudinary_id' => $image->cloudinary_id,
+                    'is_primary' => $image->is_primary
+                ];
+            })->toArray();
+        }
+        
+        $product->images = $formattedImages;
         return response()->json($product);
     }
 
