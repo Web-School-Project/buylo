@@ -29,7 +29,7 @@ const ManageUsers = () => {
 
   const fetchData = async () => {
     try {
-    setLoading(true);
+      setLoading(true);
       const params = new URLSearchParams({
         page: currentPage,
         search: searchTerm,
@@ -109,31 +109,31 @@ const ManageUsers = () => {
       </div>
 
       <div className="filters">
-          <div className="search-box">
-            <input
-              type="text"
-              placeholder="Search users..."
-              value={searchTerm}
+        <div className="search-box">
+          <input
+            type="text"
+            placeholder="Search users..."
+            value={searchTerm}
             onChange={handleSearch}
-            />
-            <i className="fa fa-search"></i>
-          </div>
+          />
+          <i className="fa fa-search"></i>
+        </div>
 
-              <select
+        <select
           value={selectedRole}
           onChange={handleRoleChange}
           className="role-filter"
-              >
-                <option value="">All Roles</option>
-                <option value="admin">Admin</option>
+        >
+          <option value="">All Roles</option>
+          <option value="admin">Admin</option>
           <option value="user">User</option>
-              </select>
-            </div>
+        </select>
+      </div>
 
-        <div className="table-responsive">
-          <table className="users-table">
-            <thead>
-              <tr>
+      <div className="table-responsive">
+        <table className="users-table">
+          <thead>
+            <tr>
               <th onClick={() => handleSort("name")}>
                 Name {sortBy === "name" && (sortOrder === "asc" ? "↑" : "↓")}
               </th>
@@ -146,71 +146,71 @@ const ManageUsers = () => {
               <th onClick={() => handleSort("created_at")}>
                 Joined{" "}
                 {sortBy === "created_at" && (sortOrder === "asc" ? "↑" : "↓")}
-                </th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
+              </th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
             {users.data.length === 0 ? (
-                <tr>
+              <tr>
                 <td colSpan="5" className="no-results">
                   No users found
-                  </td>
-                </tr>
-              ) : (
+                </td>
+              </tr>
+            ) : (
               users.data.map((user) => (
-                  <tr key={user.id}>
-                    <td>
-                        <div className="user-name">{user.name}</div>
+                <tr key={user.id}>
+                  <td>
+                    <div className="user-name">{user.name}</div>
                     <div className="user-id">ID: {user.id}</div>
-                    </td>
-                    <td>{user.email}</td>
-                    <td>
+                  </td>
+                  <td>{user.email}</td>
+                  <td>
                     <span className={`role-badge ${user.role}`}>
                       {user.role}
                     </span>
-                    </td>
+                  </td>
                   <td>{new Date(user.created_at).toLocaleDateString()}</td>
-                    <td>
-                      <div className="action-buttons">
-                        <button
-                          className="btn-delete"
+                  <td>
+                    <div className="action-buttons">
+                      <button
+                        className="btn-delete"
                         onClick={() => handleDelete(user.id)}
                         disabled={deleteLoading}
                         title="Delete User"
-                        >
-                          <TrashIcon className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
+                      >
+                        <TrashIcon className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
 
       {deleteError && (
         <div className="error-message delete-error">{deleteError}</div>
       )}
 
       {users.last_page > 1 && (
-          <div className="pagination">
-            <button
+        <div className="pagination">
+          <button
             onClick={() => setCurrentPage(currentPage - 1)}
-              disabled={currentPage === 1}
-            >
+            disabled={currentPage === 1}
+          >
             Previous
-            </button>
+          </button>
           <span>
             Page {currentPage} of {users.last_page}
           </span>
-              <button
+          <button
             onClick={() => setCurrentPage(currentPage + 1)}
             disabled={currentPage === users.last_page}
           >
             Next
-                </button>
+          </button>
         </div>
       )}
     </div>

@@ -26,26 +26,26 @@ const ManageProducts = () => {
     fetchData();
   }, []);
 
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        // Fetch both products and categories in parallel
-        const [productsResponse, categoriesResponse] = await Promise.all([
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      // Fetch both products and categories in parallel
+      const [productsResponse, categoriesResponse] = await Promise.all([
         axios.get("/products"),
         axios.get("/categories"),
-        ]);
+      ]);
 
       setProducts(productsResponse.data.data || []);
       setCategories(categoriesResponse.data.data || []);
       console.log(productsResponse.data.data);
-        setError(null);
-      } catch (err) {
-        console.error("Error fetching data:", err);
-        setError("Failed to fetch data");
-      } finally {
-        setLoading(false);
-      }
-    };
+      setError(null);
+    } catch (err) {
+      console.error("Error fetching data:", err);
+      setError("Failed to fetch data");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
@@ -76,7 +76,7 @@ const ManageProducts = () => {
       setDeleteError(null);
       await axios.delete(`/admin/products/${id}`);
       setProducts(products.filter((product) => product.id !== id));
-      } catch (err) {
+    } catch (err) {
       console.error("Error deleting product:", err);
       setDeleteError("Failed to delete product");
     } finally {
@@ -146,63 +146,63 @@ const ManageProducts = () => {
       </div>
 
       <div className="filters">
-          <div className="search-box">
-            <input
-              type="text"
-              placeholder="Search products..."
-              value={searchTerm}
-              onChange={handleSearch}
-            />
-            <i className="fa fa-search"></i>
-          </div>
+        <div className="search-box">
+          <input
+            type="text"
+            placeholder="Search products..."
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+          <i className="fa fa-search"></i>
+        </div>
 
         <select
           value={selectedCategory}
           onChange={handleCategoryChange}
           className="category-filter"
         >
-                <option value="">All Categories</option>
-                {categories.map((category) => (
-                  <option key={category.id} value={category.id}>
-                    {category.name}
-                  </option>
-                ))}
-              </select>
-            </div>
+          <option value="">All Categories</option>
+          {categories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.name}
+            </option>
+          ))}
+        </select>
+      </div>
 
-        <div className="table-responsive">
-          <table className="products-table">
-            <thead>
-              <tr>
-                <th onClick={() => handleSort("name")}>
-                  Name {sortBy === "name" && (sortOrder === "asc" ? "↑" : "↓")}
-                </th>
+      <div className="table-responsive">
+        <table className="products-table">
+          <thead>
+            <tr>
+              <th onClick={() => handleSort("name")}>
+                Name {sortBy === "name" && (sortOrder === "asc" ? "↑" : "↓")}
+              </th>
               <th>Image</th>
-                <th onClick={() => handleSort("price")}>
+              <th onClick={() => handleSort("price")}>
                 Price {sortBy === "price" && (sortOrder === "asc" ? "↑" : "↓")}
-                </th>
-                <th onClick={() => handleSort("stock")}>
+              </th>
+              <th onClick={() => handleSort("stock")}>
                 Stock {sortBy === "stock" && (sortOrder === "asc" ? "↑" : "↓")}
-                </th>
-                <th>Category</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
+              </th>
+              <th>Category</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
             {currentProducts.map((product) => (
-                    <tr key={product.id}>
-                      <td>
+              <tr key={product.id}>
+                <td>
                   <div className="product-name">{product.name}</div>
                   <div className="product-id">ID: {product.id}</div>
-                      </td>
-                      <td>
-                        <div className="product-image">
-                          <img
+                </td>
+                <td>
+                  <div className="product-image">
+                    <img
                       src={product.images?.[0]?.url || "/images/no-image.png"}
-                            alt={product.name}
-                          />
-                        </div>
-                      </td>
+                      alt={product.name}
+                    />
+                  </div>
+                </td>
                 <td>${product.price}</td>
                 <td>
                   <span
@@ -218,55 +218,55 @@ const ManageProducts = () => {
                 </td>
                 <td>
                   {categories.find((c) => c.id === product.category_id)?.name}
-                      </td>
-                      <td>
-                        <div className="action-buttons">
+                </td>
+                <td>
+                  <div className="action-buttons">
                     <button
-                            className="btn-edit"
+                      className="btn-edit"
                       onClick={() => handleEdit(product.id)}
                       title="Edit Product"
-                          >
-                    <PencilIcon className="w-4 h-4" />
-                          </button>
-                          <button
-                            className="btn-delete"
-                            onClick={() => handleDelete(product.id)}
+                    >
+                      <PencilIcon className="w-4 h-4" />
+                    </button>
+                    <button
+                      className="btn-delete"
+                      onClick={() => handleDelete(product.id)}
                       disabled={deleteLoading}
                       title="Delete Product"
-                          >
-                           <TrashIcon className="w-4 h-4" />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
+                    >
+                      <TrashIcon className="w-4 h-4" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
             ))}
-            </tbody>
-          </table>
-        </div>
+          </tbody>
+        </table>
+      </div>
 
       {deleteError && (
         <div className="error-message delete-error">{deleteError}</div>
       )}
 
-        {totalPages > 1 && (
-          <div className="pagination">
-            <button
+      {totalPages > 1 && (
+        <div className="pagination">
+          <button
             onClick={() => setCurrentPage(currentPage - 1)}
-              disabled={currentPage === 1}
-            >
+            disabled={currentPage === 1}
+          >
             Previous
-            </button>
+          </button>
           <span>
             Page {currentPage} of {totalPages}
           </span>
-              <button
+          <button
             onClick={() => setCurrentPage(currentPage + 1)}
-              disabled={currentPage === totalPages}
-            >
+            disabled={currentPage === totalPages}
+          >
             Next
-            </button>
-          </div>
-        )}
+          </button>
+        </div>
+      )}
     </div>
   );
 };

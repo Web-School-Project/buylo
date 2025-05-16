@@ -15,7 +15,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-    setLoading(true);
+        setLoading(true);
         setError(null);
 
         // Fetch categories
@@ -31,7 +31,7 @@ const HomePage = () => {
         console.error("Error fetching data:", err);
         setError("Failed to load data. Please try again.");
       } finally {
-      setLoading(false);
+        setLoading(false);
       }
     };
 
@@ -103,25 +103,25 @@ const HomePage = () => {
                   to="/products"
                   className="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-300 flex items-center"
                 >
-              Shop Now
+                  Shop Now
                   <ChevronRight className="ml-2 h-5 w-5" />
-            </Link>
+                </Link>
                 <Link
                   to="/products"
                   className="px-6 py-3 bg-white text-blue-600 font-medium rounded-lg shadow-md border border-blue-200 hover:bg-blue-50 transition-colors duration-300"
                 >
-              Browse Categories
-            </Link>
-          </div>
-        </div>
+                  Browse Categories
+                </Link>
+              </div>
+            </div>
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl blur-xl opacity-20 animate-pulse"></div>
               <div className="relative overflow-hidden rounded-2xl shadow-2xl">
-          <img
-            src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=2070&auto=format&fit=crop"
-            alt="Hero"
+                <img
+                  src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=2070&auto=format&fit=crop"
+                  alt="Hero"
                   className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
-          />
+                />
               </div>
             </div>
           </div>
@@ -138,14 +138,14 @@ const HomePage = () => {
             <p className="text-lg text-gray-600">
               Browse our wide selection of products by category
             </p>
-        </div>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {categories.map((category) => (
-            <Link
-              to={`/products?category=${category.id}`}
-              key={category.id}
+            {categories.map((category) => (
+              <Link
+                to={`/products?category=${category.id}`}
+                key={category.id}
                 className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-300 h-64"
-            >
+              >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent z-10"></div>
                 <img
                   src={category.image?.url || "/placeholder.svg"}
@@ -162,9 +162,9 @@ const HomePage = () => {
                   <span className="inline-flex items-center text-sm font-medium text-white">
                     Explore <ArrowRight className="ml-1 h-4 w-4" />
                   </span>
-              </div>
-            </Link>
-          ))}
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -179,25 +179,25 @@ const HomePage = () => {
             <p className="text-lg text-gray-600">
               Discover our most popular items loved by customers
             </p>
-        </div>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {featuredProducts.map((product) => (
+            {featuredProducts.map((product) => (
               <div
                 key={product.id}
                 className="transform hover:-translate-y-1 transition-transform duration-300"
               >
-              <ProductCard product={product} />
-            </div>
-          ))}
-        </div>
+                <ProductCard product={product} />
+              </div>
+            ))}
+          </div>
           <div className="mt-12 text-center">
             <Link
               to="/products"
               className="inline-flex items-center px-6 py-3 bg-white text-blue-600 font-medium rounded-lg shadow-md border border-blue-200 hover:bg-blue-50 transition-colors duration-300"
             >
-            View All Products
+              View All Products
               <ArrowRight className="ml-2 h-5 w-5" />
-          </Link>
+            </Link>
           </div>
         </div>
       </section>
@@ -212,18 +212,18 @@ const HomePage = () => {
             <p className="text-lg text-gray-600">
               Don't just take our word for it - hear from our satisfied
               customers
-          </p>
-        </div>
+            </p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white rounded-xl shadow-md hover:shadow-xl p-8 transition-shadow duration-300 border border-gray-100">
               <div className="flex items-center mb-6">
                 <div className="w-14 h-14 rounded-full overflow-hidden mr-4 ring-4 ring-blue-100">
-              <img
-                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop"
-                alt="Sarah Johnson"
+                  <img
+                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop"
+                    alt="Sarah Johnson"
                     className="w-full h-full object-cover"
-              />
-            </div>
+                  />
+                </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900">
                     Sarah Johnson
@@ -232,28 +232,28 @@ const HomePage = () => {
                 </div>
               </div>
               <p className="text-gray-600 mb-6">
-              I've been shopping here for over a year and the quality of
-              products and customer service is consistently excellent. Highly
-              recommend!
-            </p>
+                I've been shopping here for over a year and the quality of
+                products and customer service is consistently excellent. Highly
+                recommend!
+              </p>
               <div className="flex text-yellow-400">
                 <Star className="w-5 h-5 fill-current" />
                 <Star className="w-5 h-5 fill-current" />
                 <Star className="w-5 h-5 fill-current" />
                 <Star className="w-5 h-5 fill-current" />
                 <Star className="w-5 h-5 fill-current" />
+              </div>
             </div>
-          </div>
 
             <div className="bg-white rounded-xl shadow-md hover:shadow-xl p-8 transition-shadow duration-300 border border-gray-100">
               <div className="flex items-center mb-6">
                 <div className="w-14 h-14 rounded-full overflow-hidden mr-4 ring-4 ring-blue-100">
-              <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop"
-                alt="Michael Chen"
+                  <img
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop"
+                    alt="Michael Chen"
                     className="w-full h-full object-cover"
-              />
-            </div>
+                  />
+                </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900">
                     Michael Chen
@@ -262,28 +262,28 @@ const HomePage = () => {
                 </div>
               </div>
               <p className="text-gray-600 mb-6">
-              The electronics section has the latest gadgets at competitive
-              prices. Shipping is fast and the packaging is secure. Will
-              definitely shop again.
-            </p>
+                The electronics section has the latest gadgets at competitive
+                prices. Shipping is fast and the packaging is secure. Will
+                definitely shop again.
+              </p>
               <div className="flex text-yellow-400">
                 <Star className="w-5 h-5 fill-current" />
                 <Star className="w-5 h-5 fill-current" />
                 <Star className="w-5 h-5 fill-current" />
                 <Star className="w-5 h-5 fill-current" />
                 <Star className="w-5 h-5 fill-current stroke-current fill-none" />
+              </div>
             </div>
-          </div>
 
             <div className="bg-white rounded-xl shadow-md hover:shadow-xl p-8 transition-shadow duration-300 border border-gray-100">
               <div className="flex items-center mb-6">
                 <div className="w-14 h-14 rounded-full overflow-hidden mr-4 ring-4 ring-blue-100">
-              <img
-                src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=1974&auto=format&fit=crop"
-                alt="Amina Desta"
+                  <img
+                    src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=1974&auto=format&fit=crop"
+                    alt="Amina Desta"
                     className="w-full h-full object-cover"
-              />
-            </div>
+                  />
+                </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900">
                     Amina Desta
@@ -292,10 +292,10 @@ const HomePage = () => {
                 </div>
               </div>
               <p className="text-gray-600 mb-6">
-              As someone from Ethiopia, I appreciate the seamless payment
-              process through Chapa. The clothing collection is trendy and
-              affordable!
-            </p>
+                As someone from Ethiopia, I appreciate the seamless payment
+                process through Chapa. The clothing collection is trendy and
+                affordable!
+              </p>
               <div className="flex text-yellow-400">
                 <Star className="w-5 h-5 fill-current" />
                 <Star className="w-5 h-5 fill-current" />
@@ -340,9 +340,9 @@ const HomePage = () => {
               Subscribe to Our Newsletter
             </h2>
             <p className="text-lg text-blue-100">
-            Stay updated with our latest products, promotions, and exclusive
-            offers
-          </p>
+              Stay updated with our latest products, promotions, and exclusive
+              offers
+            </p>
           </div>
           <form className="max-w-xl mx-auto">
             <div className="flex flex-col sm:flex-row gap-4">
@@ -359,8 +359,8 @@ const HomePage = () => {
                 type="submit"
                 className="px-6 py-3 bg-white text-blue-600 font-medium rounded-lg shadow-md hover:bg-blue-50 transition-colors duration-300 whitespace-nowrap"
               >
-              Subscribe
-            </button>
+                Subscribe
+              </button>
             </div>
             <p className="mt-4 text-sm text-blue-100 text-center">
               We respect your privacy. Unsubscribe at any time.

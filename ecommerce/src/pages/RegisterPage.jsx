@@ -1,12 +1,16 @@
-"use client"
+"use client";
 
-import { useState, useContext, useEffect } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import { AuthContext } from "../context/AuthContext"
+import { useState, useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const RegisterPage = () => {
-  const { register, isAuthenticated, error: authError } = useContext(AuthContext)
-  const navigate = useNavigate()
+  const {
+    register,
+    isAuthenticated,
+    error: authError,
+  } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -15,92 +19,93 @@ const RegisterPage = () => {
     confirmPassword: "",
     phone: "",
     address: "",
-  })
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState("")
-  const [showPassword, setShowPassword] = useState(false)
-  const [passwordStrength, setPasswordStrength] = useState(0)
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [passwordStrength, setPasswordStrength] = useState(0);
 
   useEffect(() => {
     // If user is already authenticated, redirect to home
     if (isAuthenticated) {
-      navigate("/")
+      navigate("/");
     }
-  }, [isAuthenticated, navigate])
+  }, [isAuthenticated, navigate]);
 
   useEffect(() => {
     // Calculate password strength
     if (!formData.password) {
-      setPasswordStrength(0)
-      return
+      setPasswordStrength(0);
+      return;
     }
 
-    let strength = 0
+    let strength = 0;
     // Length check
-    if (formData.password.length >= 8) strength += 1
+    if (formData.password.length >= 8) strength += 1;
     // Contains number
-    if (/\d/.test(formData.password)) strength += 1
+    if (/\d/.test(formData.password)) strength += 1;
     // Contains special character
-    if (/[!@#$%^&*(),.?":{}|<>]/.test(formData.password)) strength += 1
+    if (/[!@#$%^&*(),.?":{}|<>]/.test(formData.password)) strength += 1;
     // Contains uppercase and lowercase
-    if (/[a-z]/.test(formData.password) && /[A-Z]/.test(formData.password)) strength += 1
+    if (/[a-z]/.test(formData.password) && /[A-Z]/.test(formData.password))
+      strength += 1;
 
-    setPasswordStrength(strength)
-  }, [formData.password])
+    setPasswordStrength(strength);
+  }, [formData.password]);
 
   const getPasswordStrengthText = () => {
-    if (!formData.password) return ""
-    if (passwordStrength === 0) return "Weak"
-    if (passwordStrength === 1) return "Fair"
-    if (passwordStrength === 2) return "Good"
-    if (passwordStrength === 3) return "Strong"
-    return "Very Strong"
-  }
+    if (!formData.password) return "";
+    if (passwordStrength === 0) return "Weak";
+    if (passwordStrength === 1) return "Fair";
+    if (passwordStrength === 2) return "Good";
+    if (passwordStrength === 3) return "Strong";
+    return "Very Strong";
+  };
 
   const getPasswordStrengthColor = () => {
-    if (!formData.password) return "bg-gray-200"
-    if (passwordStrength === 0) return "bg-red-500"
-    if (passwordStrength === 1) return "bg-orange-500"
-    if (passwordStrength === 2) return "bg-yellow-500"
-    if (passwordStrength === 3) return "bg-green-500"
-    return "bg-green-600"
-  }
+    if (!formData.password) return "bg-gray-200";
+    if (passwordStrength === 0) return "bg-red-500";
+    if (passwordStrength === 1) return "bg-orange-500";
+    if (passwordStrength === 2) return "bg-yellow-500";
+    if (passwordStrength === 3) return "bg-green-500";
+    return "bg-green-600";
+  };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
-    })
-  }
+    });
+  };
 
   const toggleShowPassword = () => {
-    setShowPassword(!showPassword)
-  }
+    setShowPassword(!showPassword);
+  };
 
   const validateForm = () => {
     if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match")
-      return false
+      setError("Passwords do not match");
+      return false;
     }
 
     if (formData.password.length < 6) {
-      setError("Password must be at least 6 characters long")
-      return false
+      setError("Password must be at least 6 characters long");
+      return false;
     }
 
-    return true
-  }
+    return true;
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setError("")
+    e.preventDefault();
+    setError("");
 
     if (!validateForm()) {
-      return
+      return;
     }
 
-    setLoading(true)
+    setLoading(true);
 
     try {
       await register({
@@ -109,14 +114,14 @@ const RegisterPage = () => {
         password: formData.password,
         phone: formData.phone,
         address: formData.address,
-      })
+      });
       // Redirect will happen automatically due to the useEffect
     } catch (err) {
-      setError(err.message || "Failed to register. Please try again.")
+      setError(err.message || "Failed to register. Please try again.");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="max-h-screen box-border bg-gradient-to-br from-gray-50 to-gray-100 py-12 sm:px-6 lg:px-8 flex items-center justify-center">
@@ -125,8 +130,12 @@ const RegisterPage = () => {
           {/* Form Section */}
           <div className="md:w-3/5 p-8 md:p-12">
             <div className="mb-8 text-center">
-              <h1 className="text-2xl font-bold text-gray-900 mb-2">Create Your Account</h1>
-              <p className="text-gray-600">Join our community and enjoy a personalized shopping experience</p>
+              <h1 className="text-2xl font-bold text-gray-900 mb-2">
+                Create Your Account
+              </h1>
+              <p className="text-gray-600">
+                Join our community and enjoy a personalized shopping experience
+              </p>
             </div>
 
             {(error || authError) && (
@@ -151,7 +160,10 @@ const RegisterPage = () => {
 
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Full Name
                 </label>
                 <input
@@ -167,7 +179,10 @@ const RegisterPage = () => {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Email Address
                 </label>
                 <input
@@ -184,7 +199,10 @@ const RegisterPage = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
-                  <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="password"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Password
                   </label>
                   <div className="relative">
@@ -202,7 +220,9 @@ const RegisterPage = () => {
                       type="button"
                       className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-gray-700"
                       onClick={toggleShowPassword}
-                      aria-label={showPassword ? "Hide password" : "Show password"}
+                      aria-label={
+                        showPassword ? "Hide password" : "Show password"
+                      }
                     >
                       {showPassword ? (
                         <svg
@@ -241,20 +261,28 @@ const RegisterPage = () => {
                         <div className="w-full bg-gray-200 rounded-full h-2.5">
                           <div
                             className={`h-2.5 rounded-full ${getPasswordStrengthColor()}`}
-                            style={{ width: `${(passwordStrength / 4) * 100}%` }}
+                            style={{
+                              width: `${(passwordStrength / 4) * 100}%`,
+                            }}
                           ></div>
                         </div>
-                        <span className="text-xs text-gray-600 ml-2">{getPasswordStrengthText()}</span>
+                        <span className="text-xs text-gray-600 ml-2">
+                          {getPasswordStrengthText()}
+                        </span>
                       </div>
                       <p className="text-xs text-gray-500">
-                        Use 8+ characters with a mix of letters, numbers & symbols
+                        Use 8+ characters with a mix of letters, numbers &
+                        symbols
                       </p>
                     </div>
                   )}
                 </div>
 
                 <div>
-                  <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="confirmPassword"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Confirm Password
                   </label>
                   <input
@@ -266,20 +294,29 @@ const RegisterPage = () => {
                     placeholder="Confirm your password"
                     required
                     className={`w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors ${
-                      formData.confirmPassword && formData.password && formData.confirmPassword !== formData.password
+                      formData.confirmPassword &&
+                      formData.password &&
+                      formData.confirmPassword !== formData.password
                         ? "border-red-500"
                         : "border-gray-300"
                     }`}
                   />
-                  {formData.confirmPassword && formData.password && formData.confirmPassword !== formData.password && (
-                    <p className="mt-1 text-xs text-red-500">Passwords do not match</p>
-                  )}
+                  {formData.confirmPassword &&
+                    formData.password &&
+                    formData.confirmPassword !== formData.password && (
+                      <p className="mt-1 text-xs text-red-500">
+                        Passwords do not match
+                      </p>
+                    )}
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="phone"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Phone Number (Optional)
                   </label>
                   <input
@@ -294,7 +331,10 @@ const RegisterPage = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="address"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Address (Optional)
                   </label>
                   <input
@@ -322,11 +362,17 @@ const RegisterPage = () => {
                 <div className="ml-3 text-sm">
                   <label htmlFor="terms" className="font-medium text-gray-700">
                     I agree to the{" "}
-                    <Link to="/terms" className="text-indigo-600 hover:text-indigo-500">
+                    <Link
+                      to="/terms"
+                      className="text-indigo-600 hover:text-indigo-500"
+                    >
                       Terms of Service
                     </Link>{" "}
                     and{" "}
-                    <Link to="/privacy" className="text-indigo-600 hover:text-indigo-500">
+                    <Link
+                      to="/privacy"
+                      className="text-indigo-600 hover:text-indigo-500"
+                    >
                       Privacy Policy
                     </Link>
                   </label>
@@ -368,14 +414,14 @@ const RegisterPage = () => {
                   )}
                 </button>
               </div>
-
-             
-
             </form>
 
             <p className="mt-6 text-center text-sm text-gray-600">
               Already have an account?{" "}
-              <Link to="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
+              <Link
+                to="/login"
+                className="font-medium text-indigo-600 hover:text-indigo-500"
+              >
                 Sign in
               </Link>
             </p>
@@ -393,7 +439,8 @@ const RegisterPage = () => {
               <div className="bg-black/30 backdrop-blur-sm p-6 rounded-xl">
                 <h2 className="text-2xl font-bold mb-2">Join Our Community</h2>
                 <p className="text-gray-200">
-                  Create an account to get access to exclusive deals and personalized recommendations.
+                  Create an account to get access to exclusive deals and
+                  personalized recommendations.
                 </p>
               </div>
             </div>
@@ -401,7 +448,7 @@ const RegisterPage = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default RegisterPage
+export default RegisterPage;

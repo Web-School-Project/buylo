@@ -230,21 +230,21 @@
 @media (max-width: 768px) {
   .manage-users {
     padding: 1rem;
-}
+  }
 
   .filters {
     flex-direction: column;
-}
+  }
 
   .role-filter {
-  width: 100%;
+    width: 100%;
   }
 
   .table-responsive {
     overflow-x: auto;
-}
+  }
 
   .users-table {
     min-width: 800px;
-}
+  }
 }

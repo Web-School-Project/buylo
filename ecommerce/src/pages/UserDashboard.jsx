@@ -1,37 +1,37 @@
-"use client"
+"use client";
 
-import { useState, useContext, useEffect } from "react"
-import { Link } from "react-router-dom"
-import { AuthContext } from "../context/AuthContext"
-import axios from "../utils/axios"
+import { useState, useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import axios from "../utils/axios";
 
 const UserDashboard = () => {
-  const { user, updateProfile } = useContext(AuthContext)
-  const [activeTab, setActiveTab] = useState("orders")
-  const [userOrders, setUserOrders] = useState([])
-  const [loading, setLoading] = useState(true)
+  const { user, updateProfile } = useContext(AuthContext);
+  const [activeTab, setActiveTab] = useState("orders");
+  const [userOrders, setUserOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [profileData, setProfileData] = useState({
     name: "",
     email: "",
     phone: "",
     address: "",
-  })
-  const [isEditing, setIsEditing] = useState(false)
-  const [updateLoading, setUpdateLoading] = useState(false)
-  const [updateSuccess, setUpdateSuccess] = useState(false)
+  });
+  const [isEditing, setIsEditing] = useState(false);
+  const [updateLoading, setUpdateLoading] = useState(false);
+  const [updateSuccess, setUpdateSuccess] = useState(false);
 
   useEffect(() => {
     // Reset scroll position when component mounts
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
 
     // Fetch user orders
-    setLoading(true)
+    setLoading(true);
 
     async function fetchOrders() {
       try {
-        const response = await axios.get("/orders")
-        console.log(response.data)
-        setUserOrders(response.data.data)
+        const response = await axios.get("/orders");
+        console.log(response.data);
+        setUserOrders(response.data.data);
 
         // Set profile data
         setProfileData({
@@ -39,66 +39,66 @@ const UserDashboard = () => {
           email: user.email || "",
           phone: user.phone || "",
           address: user.address || "",
-        })
+        });
 
-        setLoading(false)
+        setLoading(false);
       } catch (error) {
-        console.error("Error fetching orders:", error)
-        setLoading(false)
+        console.error("Error fetching orders:", error);
+        setLoading(false);
       }
     }
 
-    fetchOrders()
-  }, [user])
+    fetchOrders();
+  }, [user]);
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setProfileData({
       ...profileData,
       [name]: value,
-    })
-  }
+    });
+  };
 
   const handleProfileUpdate = async (e) => {
-    e.preventDefault()
-    setUpdateLoading(true)
+    e.preventDefault();
+    setUpdateLoading(true);
 
     try {
       // Update profile
-      await updateProfile(profileData)
-      setUpdateSuccess(true)
-      setIsEditing(false)
+      await updateProfile(profileData);
+      setUpdateSuccess(true);
+      setIsEditing(false);
 
       // Reset success message after 3 seconds
       setTimeout(() => {
-        setUpdateSuccess(false)
-      }, 3000)
+        setUpdateSuccess(false);
+      }, 3000);
     } catch (error) {
-      console.error("Error updating profile:", error)
+      console.error("Error updating profile:", error);
     } finally {
-      setUpdateLoading(false)
+      setUpdateLoading(false);
     }
-  }
+  };
 
   const getStatusColor = (status) => {
     switch (status.toLowerCase()) {
       case "completed":
-        return "bg-green-100 text-green-800"
+        return "bg-green-100 text-green-800";
       case "pending":
-        return "bg-yellow-100 text-yellow-800"
+        return "bg-yellow-100 text-yellow-800";
       case "processing":
-        return "bg-blue-100 text-blue-800"
+        return "bg-blue-100 text-blue-800";
       case "cancelled":
-        return "bg-red-100 text-red-800"
+        return "bg-red-100 text-red-800";
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-gray-100 text-gray-800";
     }
-  }
+  };
 
   const formatDate = (dateString) => {
-    const options = { year: "numeric", month: "short", day: "numeric" }
-    return new Date(dateString).toLocaleDateString(undefined, options)
-  }
+    const options = { year: "numeric", month: "short", day: "numeric" };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
 
   if (loading) {
     return (
@@ -108,7 +108,7 @@ const UserDashboard = () => {
           <p className="mt-4 text-gray-600">Loading dashboard...</p>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -117,7 +117,9 @@ const UserDashboard = () => {
       <div className="bg-gradient-to-r from-indigo-600 to-indigo-800 text-white py-8 px-4 sm:px-6 lg:px-8 mb-6">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-3xl font-bold">My Account</h1>
-          <p className="mt-1 text-indigo-100">Manage your orders and personal information</p>
+          <p className="mt-1 text-indigo-100">
+            Manage your orders and personal information
+          </p>
         </div>
       </div>
 
@@ -151,14 +153,18 @@ const UserDashboard = () => {
                     </svg>
                   )}
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900">{user.name}</h3>
+                <h3 className="text-lg font-semibold text-gray-900">
+                  {user.name}
+                </h3>
                 <p className="text-sm text-gray-500 mt-1">{user.email}</p>
               </div>
 
               <div className="p-2">
                 <button
                   className={`w-full flex items-center px-4 py-3 rounded-lg text-left transition-colors ${
-                    activeTab === "orders" ? "bg-indigo-50 text-indigo-700" : "text-gray-700 hover:bg-gray-50"
+                    activeTab === "orders"
+                      ? "bg-indigo-50 text-indigo-700"
+                      : "text-gray-700 hover:bg-gray-50"
                   }`}
                   onClick={() => setActiveTab("orders")}
                 >
@@ -180,7 +186,9 @@ const UserDashboard = () => {
                 </button>
                 <button
                   className={`w-full flex items-center px-4 py-3 rounded-lg text-left transition-colors ${
-                    activeTab === "profile" ? "bg-indigo-50 text-indigo-700" : "text-gray-700 hover:bg-gray-50"
+                    activeTab === "profile"
+                      ? "bg-indigo-50 text-indigo-700"
+                      : "text-gray-700 hover:bg-gray-50"
                   }`}
                   onClick={() => setActiveTab("profile")}
                 >
@@ -202,7 +210,9 @@ const UserDashboard = () => {
                 </button>
                 <button
                   className={`w-full flex items-center px-4 py-3 rounded-lg text-left transition-colors ${
-                    activeTab === "wishlist" ? "bg-indigo-50 text-indigo-700" : "text-gray-700 hover:bg-gray-50"
+                    activeTab === "wishlist"
+                      ? "bg-indigo-50 text-indigo-700"
+                      : "text-gray-700 hover:bg-gray-50"
                   }`}
                   onClick={() => setActiveTab("wishlist")}
                 >
@@ -224,7 +234,9 @@ const UserDashboard = () => {
                 </button>
                 <button
                   className={`w-full flex items-center px-4 py-3 rounded-lg text-left transition-colors ${
-                    activeTab === "addresses" ? "bg-indigo-50 text-indigo-700" : "text-gray-700 hover:bg-gray-50"
+                    activeTab === "addresses"
+                      ? "bg-indigo-50 text-indigo-700"
+                      : "text-gray-700 hover:bg-gray-50"
                   }`}
                   onClick={() => setActiveTab("addresses")}
                 >
@@ -259,7 +271,9 @@ const UserDashboard = () => {
             {activeTab === "orders" && (
               <div className="bg-white rounded-xl shadow-sm overflow-hidden">
                 <div className="px-6 py-5 border-b border-gray-200">
-                  <h2 className="text-xl font-semibold text-gray-900">My Orders</h2>
+                  <h2 className="text-xl font-semibold text-gray-900">
+                    My Orders
+                  </h2>
                 </div>
 
                 {userOrders.length === 0 ? (
@@ -280,9 +294,12 @@ const UserDashboard = () => {
                         />
                       </svg>
                     </div>
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">No orders yet</h3>
+                    <h3 className="text-lg font-medium text-gray-900 mb-2">
+                      No orders yet
+                    </h3>
                     <p className="text-gray-500 mb-6">
-                      You haven't placed any orders yet. Start shopping to see your orders here.
+                      You haven't placed any orders yet. Start shopping to see
+                      your orders here.
                     </p>
                     <Link
                       to="/products"
@@ -294,27 +311,42 @@ const UserDashboard = () => {
                 ) : (
                   <div className="divide-y divide-gray-200">
                     {userOrders.map((order) => (
-                      <div key={order.id} className="p-6 hover:bg-gray-50 transition-colors">
+                      <div
+                        key={order.id}
+                        className="p-6 hover:bg-gray-50 transition-colors"
+                      >
                         <div className="flex flex-col sm:flex-row justify-between mb-4">
                           <div>
-                            <h3 className="text-lg font-medium text-gray-900">Order #{order.id}</h3>
-                            <p className="text-sm text-gray-500 mt-1">Placed on {formatDate(order.created_at)}</p>
+                            <h3 className="text-lg font-medium text-gray-900">
+                              Order #{order.id}
+                            </h3>
+                            <p className="text-sm text-gray-500 mt-1">
+                              Placed on {formatDate(order.created_at)}
+                            </p>
                           </div>
                           <div className="mt-2 sm:mt-0">
                             <span
-                              className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(order.status)}`}
+                              className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(
+                                order.status
+                              )}`}
                             >
-                              {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+                              {order.status.charAt(0).toUpperCase() +
+                                order.status.slice(1)}
                             </span>
                           </div>
                         </div>
 
                         {order.items && order.items.length > 0 && (
                           <div className="mt-4 bg-gray-50 rounded-lg p-4 mb-4">
-                            <h4 className="text-sm font-medium text-gray-700 mb-3">Order Items</h4>
+                            <h4 className="text-sm font-medium text-gray-700 mb-3">
+                              Order Items
+                            </h4>
                             <div className="space-y-3">
                               {order.items.map((item, index) => (
-                                <div key={index} className="flex justify-between items-center text-sm">
+                                <div
+                                  key={index}
+                                  className="flex justify-between items-center text-sm"
+                                >
                                   <div className="flex items-center">
                                     <div className="w-10 h-10 bg-gray-200 rounded-md flex-shrink-0 mr-3">
                                       {item.image && (
@@ -326,12 +358,19 @@ const UserDashboard = () => {
                                       )}
                                     </div>
                                     <div>
-                                      <p className="font-medium text-gray-800">{item.product_name || "Product"}</p>
-                                      <p className="text-gray-500">Qty: {item.quantity}</p>
+                                      <p className="font-medium text-gray-800">
+                                        {item.product_name || "Product"}
+                                      </p>
+                                      <p className="text-gray-500">
+                                        Qty: {item.quantity}
+                                      </p>
                                     </div>
                                   </div>
                                   <p className="font-medium text-gray-900">
-                                    ${((item.price || 0) * (item.quantity || 1)).toFixed(2)}
+                                    $
+                                    {(
+                                      (item.price || 0) * (item.quantity || 1)
+                                    ).toFixed(2)}
                                   </p>
                                 </div>
                               ))}
@@ -341,7 +380,9 @@ const UserDashboard = () => {
 
                         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mt-4 pt-4 border-t border-gray-200">
                           <div className="flex items-center mb-3 sm:mb-0">
-                            <span className="text-sm text-gray-500 mr-2">Total:</span>
+                            <span className="text-sm text-gray-500 mr-2">
+                              Total:
+                            </span>
                             <span className="text-lg font-semibold text-gray-900">
                               ${Number(order.total_amount).toFixed(2)}
                             </span>
@@ -365,7 +406,9 @@ const UserDashboard = () => {
             {activeTab === "profile" && (
               <div className="bg-white rounded-xl shadow-sm overflow-hidden">
                 <div className="px-6 py-5 border-b border-gray-200 flex justify-between items-center">
-                  <h2 className="text-xl font-semibold text-gray-900">Profile Information</h2>
+                  <h2 className="text-xl font-semibold text-gray-900">
+                    Profile Information
+                  </h2>
                   {!isEditing && (
                     <button
                       className="inline-flex items-center px-3 py-1.5 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -399,7 +442,10 @@ const UserDashboard = () => {
                     <form onSubmit={handleProfileUpdate} className="space-y-6">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                          <label
+                            htmlFor="name"
+                            className="block text-sm font-medium text-gray-700 mb-1"
+                          >
                             Full Name
                           </label>
                           <input
@@ -413,7 +459,10 @@ const UserDashboard = () => {
                           />
                         </div>
                         <div>
-                          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                          <label
+                            htmlFor="email"
+                            className="block text-sm font-medium text-gray-700 mb-1"
+                          >
                             Email Address
                           </label>
                           <input
@@ -428,7 +477,10 @@ const UserDashboard = () => {
                           />
                         </div>
                         <div>
-                          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                          <label
+                            htmlFor="phone"
+                            className="block text-sm font-medium text-gray-700 mb-1"
+                          >
                             Phone Number
                           </label>
                           <input
@@ -441,7 +493,10 @@ const UserDashboard = () => {
                           />
                         </div>
                         <div>
-                          <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
+                          <label
+                            htmlFor="address"
+                            className="block text-sm font-medium text-gray-700 mb-1"
+                          >
                             Address
                           </label>
                           <input
@@ -502,27 +557,45 @@ const UserDashboard = () => {
                     <div className="space-y-6">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="bg-gray-50 p-4 rounded-lg">
-                          <p className="text-sm font-medium text-gray-500 mb-1">Full Name</p>
-                          <p className="text-base font-medium text-gray-900">{profileData.name}</p>
+                          <p className="text-sm font-medium text-gray-500 mb-1">
+                            Full Name
+                          </p>
+                          <p className="text-base font-medium text-gray-900">
+                            {profileData.name}
+                          </p>
                         </div>
                         <div className="bg-gray-50 p-4 rounded-lg">
-                          <p className="text-sm font-medium text-gray-500 mb-1">Email Address</p>
-                          <p className="text-base font-medium text-gray-900">{profileData.email}</p>
+                          <p className="text-sm font-medium text-gray-500 mb-1">
+                            Email Address
+                          </p>
+                          <p className="text-base font-medium text-gray-900">
+                            {profileData.email}
+                          </p>
                         </div>
                         <div className="bg-gray-50 p-4 rounded-lg">
-                          <p className="text-sm font-medium text-gray-500 mb-1">Phone Number</p>
-                          <p className="text-base font-medium text-gray-900">{profileData.phone || "Not provided"}</p>
+                          <p className="text-sm font-medium text-gray-500 mb-1">
+                            Phone Number
+                          </p>
+                          <p className="text-base font-medium text-gray-900">
+                            {profileData.phone || "Not provided"}
+                          </p>
                         </div>
                         <div className="bg-gray-50 p-4 rounded-lg">
-                          <p className="text-sm font-medium text-gray-500 mb-1">Address</p>
-                          <p className="text-base font-medium text-gray-900">{profileData.address || "Not provided"}</p>
+                          <p className="text-sm font-medium text-gray-500 mb-1">
+                            Address
+                          </p>
+                          <p className="text-base font-medium text-gray-900">
+                            {profileData.address || "Not provided"}
+                          </p>
                         </div>
                       </div>
                     </div>
                   )}
 
                   <div className="mt-8 pt-6 border-t border-gray-200">
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">Change Password</h3>
+                    <h3 className="text-lg font-medium text-gray-900 mb-2">
+                      Change Password
+                    </h3>
                     <p className="text-sm text-gray-500 mb-4">
                       For security reasons, you can change your password here.
                     </p>
@@ -537,7 +610,9 @@ const UserDashboard = () => {
             {activeTab === "wishlist" && (
               <div className="bg-white rounded-xl shadow-sm overflow-hidden">
                 <div className="px-6 py-5 border-b border-gray-200">
-                  <h2 className="text-xl font-semibold text-gray-900">My Wishlist</h2>
+                  <h2 className="text-xl font-semibold text-gray-900">
+                    My Wishlist
+                  </h2>
                 </div>
                 <div className="p-12 text-center">
                   <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -556,8 +631,13 @@ const UserDashboard = () => {
                       />
                     </svg>
                   </div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">Your wishlist is empty</h3>
-                  <p className="text-gray-500 mb-6">Save items you like to your wishlist and they will appear here.</p>
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">
+                    Your wishlist is empty
+                  </h3>
+                  <p className="text-gray-500 mb-6">
+                    Save items you like to your wishlist and they will appear
+                    here.
+                  </p>
                   <Link
                     to="/products"
                     className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -571,7 +651,9 @@ const UserDashboard = () => {
             {activeTab === "addresses" && (
               <div className="bg-white rounded-xl shadow-sm overflow-hidden">
                 <div className="px-6 py-5 border-b border-gray-200 flex justify-between items-center">
-                  <h2 className="text-xl font-semibold text-gray-900">My Addresses</h2>
+                  <h2 className="text-xl font-semibold text-gray-900">
+                    My Addresses
+                  </h2>
                   <button className="inline-flex items-center px-3 py-1.5 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Add New Address
                   </button>
@@ -599,8 +681,12 @@ const UserDashboard = () => {
                       />
                     </svg>
                   </div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">No addresses saved</h3>
-                  <p className="text-gray-500 mb-6">Add your shipping and billing addresses for faster checkout.</p>
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">
+                    No addresses saved
+                  </h3>
+                  <p className="text-gray-500 mb-6">
+                    Add your shipping and billing addresses for faster checkout.
+                  </p>
                   <button className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Add Address
                   </button>
@@ -611,7 +697,7 @@ const UserDashboard = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default UserDashboard
+export default UserDashboard;

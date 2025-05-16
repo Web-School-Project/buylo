@@ -24,7 +24,7 @@ const ProductsPage = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-    setLoading(true);
+        setLoading(true);
         setError(null);
         const response = await axios.get("/categories");
         setCategories(response.data.data || []);
@@ -32,7 +32,7 @@ const ProductsPage = () => {
         console.error("Error fetching categories:", err);
         setError("Failed to load categories. Please try again.");
       } finally {
-      setLoading(false);
+        setLoading(false);
       }
     };
 
@@ -128,7 +128,7 @@ const ProductsPage = () => {
         </p>
 
         <div className="flex flex-col lg:flex-row gap-8">
-        {/* Filters Sidebar */}
+          {/* Filters Sidebar */}
           <div
             className={`lg:w-1/4 space-y-6 ${
               mobileFiltersOpen ? "block" : "hidden"
@@ -141,11 +141,11 @@ const ProductsPage = () => {
                 </h3>
                 <form onSubmit={handleSearchSubmit} className="space-y-3">
                   <div className="relative">
-              <input
-                type="text"
-                placeholder="Search products..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                    <input
+                      type="text"
+                      placeholder="Search products..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent outline-none transition"
                     />
                     <svg
@@ -167,54 +167,54 @@ const ProductsPage = () => {
                   >
                     Search
                   </button>
-            </form>
-          </div>
+                </form>
+              </div>
 
               <div className="p-5 border-b border-gray-100">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">
                   Categories
                 </h3>
                 <div className="space-y-2">
-              {categories.map((category) => (
+                  {categories.map((category) => (
                     <div key={category.id} className="flex items-center">
-                  <input
-                    type="checkbox"
-                    id={`category-${category.id}`}
-                    checked={selectedCategory === category.id}
-                    onChange={() => handleCategoryChange(category.id)}
+                      <input
+                        type="checkbox"
+                        id={`category-${category.id}`}
+                        checked={selectedCategory === category.id}
+                        onChange={() => handleCategoryChange(category.id)}
                         className="h-4 w-4 text-gray-900 focus:ring-gray-500 border-gray-300 rounded"
-                  />
+                      />
                       <label
                         htmlFor={`category-${category.id}`}
                         className="ml-2 text-gray-700 hover:text-gray-900 cursor-pointer"
                       >
-                    {category.name}
-                  </label>
+                        {category.name}
+                      </label>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
+              </div>
 
               <div className="p-5 border-b border-gray-100">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">
                   Price Range
                 </h3>
                 <div className="space-y-4">
-              <input
-                type="range"
-                min="0"
-                max="500"
-                step="10"
-                value={priceRange[1]}
-                onChange={handlePriceChange}
+                  <input
+                    type="range"
+                    min="0"
+                    max="500"
+                    step="10"
+                    value={priceRange[1]}
+                    onChange={handlePriceChange}
                     className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-              />
+                  />
                   <div className="flex justify-between text-sm text-gray-600">
-                <span>${priceRange[0]}</span>
-                <span>${priceRange[1]}</span>
+                    <span>${priceRange[0]}</span>
+                    <span>${priceRange[1]}</span>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
 
               <div className="p-5">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">
@@ -247,10 +247,10 @@ const ProductsPage = () => {
                           ))}
                         </div>
                         <span className="ml-1 text-gray-700">& Up</span>
-                </label>
-              </div>
+                      </label>
+                    </div>
                   ))}
-              </div>
+                </div>
               </div>
             </div>
 
@@ -310,12 +310,12 @@ const ProductsPage = () => {
                       </button>
                     </div>
                   )}
-            </div>
-          </div>
+                </div>
+              </div>
             )}
-        </div>
+          </div>
 
-        {/* Products List */}
+          {/* Products List */}
           <div className="lg:w-3/4">
             <ProductList
               categoryId={selectedCategory}

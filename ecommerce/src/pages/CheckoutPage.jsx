@@ -101,7 +101,7 @@ const CheckoutPage = () => {
 
       if (orderResponse.data.status === "success") {
         const orderId = orderResponse.data.data.id;
-       
+
         // Initialize payment with Chapa
         const paymentResponse = await axios.post("/payment/initialize", {
           order_id: orderId,
