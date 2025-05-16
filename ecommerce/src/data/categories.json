@@ -1,0 +1,74 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Electronics",
+      "description": "Latest gadgets and electronic devices",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": 2,
+      "name": "Clothing",
+      "description": "Fashion and apparel for all seasons",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": 3,
+      "name": "Home & Kitchen",
+      "description": "Everything for your home and kitchen needs",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": 4,
+      "name": "Books",
+      "description": "Best-selling books and educational materials",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": 5,
+      "name": "Sports & Outdoors",
+      "description": "Sports equipment and outdoor gear",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": 6,
+      "name": "Beauty & Personal Care",
+      "description": "Beauty products and personal care items",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": 7,
+      "name": "Toys & Games",
+      "description": "Toys, games, and entertainment for all ages",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": 8,
+      "name": "Health & Wellness",
+      "description": "Health supplements and wellness products",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": 9,
+      "name": "Jewelry",
+      "description": "Fine jewelry and accessories",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": 10,
+      "name": "Automotive",
+      "description": "Auto parts and accessories",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  ]
+}

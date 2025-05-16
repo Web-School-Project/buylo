@@ -1,0 +1,116 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Premium Wireless Headphones",
+      "description": "High-quality wireless headphones with noise cancellation and premium sound quality. Perfect for music lovers and professionals.",
+      "price": 299.99,
+      "stock": 50,
+      "category_id": 1,
+      "images": [
+        "https://res.cloudinary.com/your-cloud-name/image/upload/v1/products/headphones-1.jpg",
+        "https://res.cloudinary.com/your-cloud-name/image/upload/v1/products/headphones-2.jpg"
+      ],
+      "created_at": "2024-03-15T10:00:00Z",
+      "updated_at": "2024-03-15T10:00:00Z"
+    },
+    {
+      "id": 2,
+      "name": "Smart Fitness Watch",
+      "description": "Track your fitness goals with this advanced smartwatch. Features include heart rate monitoring, GPS, and sleep tracking.",
+      "price": 199.99,
+      "stock": 75,
+      "category_id": 2,
+      "images": [
+        "https://res.cloudinary.com/your-cloud-name/image/upload/v1/products/watch-1.jpg",
+        "https://res.cloudinary.com/your-cloud-name/image/upload/v1/products/watch-2.jpg"
+      ],
+      "created_at": "2024-03-14T15:30:00Z",
+      "updated_at": "2024-03-14T15:30:00Z"
+    },
+    {
+      "id": 3,
+      "name": "Professional DSLR Camera",
+      "description": "Capture stunning photos with this professional-grade DSLR camera. Includes 24MP sensor and 4K video recording.",
+      "price": 1299.99,
+      "stock": 25,
+      "category_id": 3,
+      "images": [
+        "https://res.cloudinary.com/your-cloud-name/image/upload/v1/products/camera-1.jpg",
+        "https://res.cloudinary.com/your-cloud-name/image/upload/v1/products/camera-2.jpg"
+      ],
+      "created_at": "2024-03-13T09:15:00Z",
+      "updated_at": "2024-03-13T09:15:00Z"
+    },
+    {
+      "id": 4,
+      "name": "Ultra HD Smart TV",
+      "description": "Experience stunning visuals with this 55-inch 4K Smart TV. Features HDR, built-in streaming apps, and voice control.",
+      "price": 799.99,
+      "stock": 30,
+      "category_id": 4,
+      "images": [
+        "https://res.cloudinary.com/your-cloud-name/image/upload/v1/products/tv-1.jpg",
+        "https://res.cloudinary.com/your-cloud-name/image/upload/v1/products/tv-2.jpg"
+      ],
+      "created_at": "2024-03-12T14:45:00Z",
+      "updated_at": "2024-03-12T14:45:00Z"
+    },
+    {
+      "id": 5,
+      "name": "Gaming Laptop",
+      "description": "Powerful gaming laptop with high-performance GPU, fast processor, and high refresh rate display.",
+      "price": 1499.99,
+      "stock": 20,
+      "category_id": 5,
+      "images": [
+        "https://res.cloudinary.com/your-cloud-name/image/upload/v1/products/laptop-1.jpg",
+        "https://res.cloudinary.com/your-cloud-name/image/upload/v1/products/laptop-2.jpg"
+      ],
+      "created_at": "2024-03-11T11:20:00Z",
+      "updated_at": "2024-03-11T11:20:00Z"
+    },
+    {
+      "id": 6,
+      "name": "Wireless Earbuds",
+      "description": "True wireless earbuds with active noise cancellation and premium sound quality.",
+      "price": 159.99,
+      "stock": 100,
+      "category_id": 1,
+      "images": [
+        "https://res.cloudinary.com/your-cloud-name/image/upload/v1/products/earbuds-1.jpg",
+        "https://res.cloudinary.com/your-cloud-name/image/upload/v1/products/earbuds-2.jpg"
+      ],
+      "created_at": "2024-03-10T16:30:00Z",
+      "updated_at": "2024-03-10T16:30:00Z"
+    },
+    {
+      "id": 7,
+      "name": "Smart Home Hub",
+      "description": "Control your smart home devices with this central hub. Compatible with various smart home protocols.",
+      "price": 129.99,
+      "stock": 45,
+      "category_id": 6,
+      "images": [
+        "https://res.cloudinary.com/your-cloud-name/image/upload/v1/products/hub-1.jpg",
+        "https://res.cloudinary.com/your-cloud-name/image/upload/v1/products/hub-2.jpg"
+      ],
+      "created_at": "2024-03-09T13:45:00Z",
+      "updated_at": "2024-03-09T13:45:00Z"
+    },
+    {
+      "id": 8,
+      "name": "Professional Microphone",
+      "description": "High-quality USB microphone perfect for streaming, podcasting, and voice recording.",
+      "price": 89.99,
+      "stock": 60,
+      "category_id": 7,
+      "images": [
+        "https://res.cloudinary.com/your-cloud-name/image/upload/v1/products/mic-1.jpg",
+        "https://res.cloudinary.com/your-cloud-name/image/upload/v1/products/mic-2.jpg"
+      ],
+      "created_at": "2024-03-08T10:15:00Z",
+      "updated_at": "2024-03-08T10:15:00Z"
+    }
+  ]
+}
